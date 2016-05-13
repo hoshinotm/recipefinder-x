@@ -1,0 +1,33 @@
+
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+<!-- 
+<h1>Recipes#index</h1>
+<p>Find me in app/views/recipes/index.html.erb</p>
+-->
+
+<h2>Searching for: <%= @search_term %></h2>
+<p>Powered By Food2Fork.com</p>
+
+<table border="1" cellpadding="5"> 
+  <tr class="tableheader">
+    <th>Image</th>
+    <th>Title</th>
+    <th>Social Rank</th>
+  </tr>
+  <% @recipes.each do |recipe| %>
+  <tr class=<%= cycle('even', 'odd') %>>
+    <% image_url = recipe["image_url"] %>
+    <% recipe_url = recipe["source_url"] %>
+    <td class="tablerow">
+       <%= link_to( image_tag(image_url, size: "100"), recipe_url ) %>
+    </td>  
+    <td class="tablerow">
+       <%= link_to( (sanitize recipe["title"]), recipe_url ) %>
+    </td>
+    <td class="tablerow"><%= recipe["social_rank"].round(3) %></td>
+  </tr>
+  <% end %>
+ </table>
+
+
